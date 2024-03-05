@@ -3,11 +3,7 @@
   "description": "React front-end SPA application with blockchain integration",
   "version": "1.0.0",
   "private": true,
-  "author": {
-    "name": "Vinicius Martins",
-    "email": "viniciusmartinssilva@live.com",
-    "url": "https://github.com/Vinimart/frontend-assessment"
-  },
+  "author": "Vinicius Martins <viniciusmartinssilva@live.com> (https://github.com/Vinimart/frontend-assessment)",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -50,5 +46,8 @@
     "vite": "^5.0.12",
     "vite-tsconfig-paths": "^4.3.1",
     "vitest": "^1.2.2"
-  }
+  },
+  "main": "index.js",
+  "keywords": [],
+  "license": "ISC"
 }
