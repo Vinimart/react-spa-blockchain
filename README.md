@@ -13,44 +13,52 @@ This project uses tools like:
 - [Eslint](https://eslint.org)
 - [Prettier](https://prettier.io)
 
+## Getting Started
+
+Copy the `.env.template` file to `.env` and update the environment variables.
+
+```bash
+cp .env.template .env
+```
+
 Install dependencies.
 
 ```bash
-yarn install
+npm install
 ```
 
 Serve with hot reload at <http://localhost:5173>.
 
 ```bash
-yarn dev
+npm run dev
 ```
 
 ### Lint
 
 ```bash
-yarn lint
+npm run lint
 ```
 
 ### Typecheck
 
 ```bash
-yarn typecheck
+npm run typecheck
 ```
 
 ### Build
 
 ```bash
-yarn build
+npm run build
 ```
 
 ### Test
 
 ```bash
-yarn test
+npm run test
 ```
 
 View and interact with your tests via UI.
 
 ```bash
-yarn test:ui
+npm run test:ui
 ```
