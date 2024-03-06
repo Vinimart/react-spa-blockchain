@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  @apply min-h-screen overflow-x-hidden bg-[#ffffff] scroll-smooth font-poppins;
+}
+
+@layer utilities {
+  .container {
+    @apply px-1 mx-auto md:px-0;
+    max-width: clamp(728px, 75vw, 1440px);
+  }
+
+  .container-sm {
+    @apply px-1 mx-auto md:px-0;
+    max-width: clamp(728px, 75vw, 1024px);
+  }
+}
