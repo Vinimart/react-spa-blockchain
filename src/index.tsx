@@ -1,8 +1,7 @@
-import { createRoot } from 'react-dom/client'
+import 'styles/global.css'
 import 'tailwindcss/tailwind.css'
-import App from 'components/App'
 
-const container = document.getElementById('root') as HTMLDivElement
-const root = createRoot(container)
+import App from 'App'
+import * as ReactDOM from 'react-dom/client'
 
-root.render(<App />)
+ReactDOM.createRoot(document.getElementById('root')!).render(<App />)
