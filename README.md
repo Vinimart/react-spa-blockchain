@@ -2,6 +2,8 @@
 
 ## Overview
 
+[LIVE DEMO](https://vinimart.github.io/react-spa-blockchain/)
+
 This tech assessment presents a React-based Single Page Application (SPA) integrated with blockchain technology, built with TypeScript for type safety and reliability.
 
 The project is scaffolded with Vite for efficient build tooling and incorporates Vitest for comprehensive testing capabilities. ESLint and Prettier are utilized for maintaining code quality and consistency.
