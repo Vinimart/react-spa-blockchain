@@ -45,12 +45,6 @@ This project uses tools like:
 
 ## Getting Started
 
-Copy the `.env.template` file to `.env` and update the environment variables.
-
-```bash
-cp .env.template .env
-```
-
 Install dependencies.
 
 ```bash

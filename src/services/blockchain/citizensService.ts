@@ -1,4 +1,5 @@
 import CitizensABI from 'assets/ABI/CitizensABI.json'
+import { CITIZENS_CONTRACT_ADDRESS as address } from 'config/blockchain'
 import { parseBigIntJson } from 'utils'
 
 import { initializeContract } from './blockchainService'
@@ -6,8 +7,6 @@ import { initializeContract } from './blockchainService'
 import type { MetaMaskInpageProvider } from '@metamask/providers'
 import type { ICitizen } from 'models/Citizen'
 import type { LogDescription, Signer } from 'ethers'
-
-const { VITE_CITIZENS_CONTRACT_ADDRESS: address } = import.meta.env
 
 export type SortDirection = 'asc' | 'desc'
 export type GetAllCitizensSort = keyof Omit<ICitizen, 'someNote'>

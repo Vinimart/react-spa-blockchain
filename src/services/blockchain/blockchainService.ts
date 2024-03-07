@@ -1,6 +1,5 @@
+import { CHAIN_ID } from 'config/blockchain'
 import { ethers } from 'ethers'
-
-const { VITE_CHAIN_ID } = import.meta.env
 
 function verifyChainId(
   chainId: string | bigint,
@@ -8,9 +7,9 @@ function verifyChainId(
 ) {
   const chainIdHex: string = `0x${chainId.toString(16)}`
 
-  if (chainIdHex !== VITE_CHAIN_ID) {
-    provider.send('wallet_switchEthereumChain', [{ chainId: VITE_CHAIN_ID }])
-    throw new Error(`Please, change the select the chain ID ${VITE_CHAIN_ID}`)
+  if (chainIdHex !== CHAIN_ID) {
+    provider.send('wallet_switchEthereumChain', [{ chainId: CHAIN_ID }])
+    throw new Error(`Please, change the select the chain ID ${CHAIN_ID}`)
   }
 
   return true
