@@ -5,11 +5,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 export default function App() {
   return (
-    <Router>
+    <Router basename={baseName}>
       <Main>
         <Routes>
-          <Route path={`${baseName}/`} element={<Home />} />
-          <Route path={`${baseName}/add-citizen`} element={<AddCitizen />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/add-citizen" element={<AddCitizen />} />
         </Routes>
       </Main>
     </Router>

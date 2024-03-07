@@ -1,4 +1,3 @@
-import { baseName } from 'config/router'
 import { useConnectWallet } from 'hooks'
 import { Link } from 'react-router-dom'
 import useMainStore from 'store/main'
@@ -6,7 +5,7 @@ import navItems, { INavItems } from 'utils/nav-items'
 
 function NavItem({ label, path }: INavItems) {
   return (
-    <Link to={`${baseName}${path}`}>
+    <Link to={path}>
       <li className="btn btn-primary btn-sm text-sm">{label}</li>
     </Link>
   )
