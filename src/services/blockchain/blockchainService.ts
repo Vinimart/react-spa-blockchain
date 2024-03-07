@@ -6,19 +6,19 @@ function verifyChainId(
   chainId: string | bigint,
   provider: ethers.BrowserProvider
 ) {
-  if (chainId !== VITE_CHAIN_ID) {
+  const chainIdHex: string = `0x${chainId.toString(16)}`
+
+  if (chainIdHex !== VITE_CHAIN_ID) {
     provider.send('wallet_switchEthereumChain', [{ chainId: VITE_CHAIN_ID }])
     throw new Error(`Please, change the select the chain ID ${VITE_CHAIN_ID}`)
   }
+
+  return true
 }
 
 async function initializeProvider() {
   try {
     if (typeof window.ethereum !== 'undefined') {
-      if (VITE_CHAIN_ID) {
-        throw new Error('Chain ID not found')
-      }
-
       const provider = new ethers.BrowserProvider(window.ethereum, 'any')
 
       window.ethereum.on('chainChanged', (chainId) =>
@@ -43,10 +43,6 @@ function initializeContract(
   signer?: ethers.Signer
 ) {
   try {
-    if (!address || !abi || !signer) {
-      throw new Error('Invalid contract parameters')
-    }
-
     return new ethers.Contract(address, abi, signer)
   } catch (error) {
     throw new Error('Error initializing contract:', error as Error)

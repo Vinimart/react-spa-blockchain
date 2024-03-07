@@ -6,6 +6,7 @@ import { useConnectWallet } from 'hooks'
 import { ICitizen } from 'models/Citizen'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { getAllCitizens } from 'services/blockchain'
+import { verifyChainId } from 'services/blockchain/blockchainService'
 import {
   GetAllCitizensSort,
   getCitizenNotes,
@@ -43,7 +44,7 @@ const COLUMNS: ICitizensTableColumns[] = [
 export default function Home() {
   const connectWallet = useConnectWallet()
 
-  const { signer, mutate } = useMainStore()
+  const { signer, provider, mutate } = useMainStore()
 
   const [page, setPage] = useState<number>(1)
   const [sortDir, setSortDir] = useState<boolean>(true)
@@ -73,6 +74,13 @@ export default function Home() {
       setIsLoading(true)
 
       try {
+        const network = await provider?.getNetwork()
+
+        verifyChainId(
+          network?.chainId as string | bigint,
+          provider as ethers.BrowserProvider
+        )
+
         const direction: SortDirection = sortDir ? 'asc' : 'desc'
 
         const newCitizens = await getAllCitizens(
@@ -90,7 +98,7 @@ export default function Home() {
         setIsLoading(false)
       }
     },
-    [signer, sortDir]
+    [provider, signer, sortDir]
   )
 
   const showDialog = useCallback(
