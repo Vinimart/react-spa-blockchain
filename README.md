@@ -11,7 +11,8 @@ The project is scaffolded with Vite for efficient build tooling and incorporates
 The project follows a well-organized structure, with each directory serving distinct purposes:
 
 - **src**: Contains the core application code, including the entry point (index.tsx) and the main App component (App.tsx).
-  components: Organized into common, features, and layout subdirectories, facilitating the logical separation of UI components based on their roles.
+
+- **components**: Organized into common, features, and layout subdirectories, facilitating the logical separation of UI components based on their roles.
 
 - **hooks**: Houses custom React hooks like useConnectWallet and useDebounce, offering encapsulated logic for reusability across components.
 
