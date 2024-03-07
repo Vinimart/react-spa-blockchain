@@ -4,7 +4,7 @@ name: Deploy Jekyll with GitHub Pages dependencies preinstalled
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
+    branches: ['main']
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -18,7 +18,7 @@ permissions:
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: false
 
 jobs:
@@ -47,7 +47,13 @@ jobs:
       - name: Run tests
         run: npm run test
       - name: Build
-        run: npm run build
+        run: |
+          echo "VITE_CHAIN_ID=$VITE_CHAIN_ID"
+          echo "VITE_CITIZENS_CONTRACT_ADDRESS=$VITE_CITIZENS_CONTRACT_ADDRESS"
+          npm run build
+        env:
+          VITE_CHAIN_ID: ${{ vars.VITE_CHAIN_ID }}
+          VITE_CITIZENS_CONTRACT_ADDRESS: ${{ vars.VITE_CITIZENS_CONTRACT_ADDRESS }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
