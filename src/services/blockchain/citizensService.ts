@@ -103,11 +103,7 @@ async function addCitizen({
       method: 'eth_requestAccounts'
     })
 
-    const citizensContract = await initializeContract(
-      address,
-      CitizensABI,
-      signer
-    )
+    const citizensContract = initializeContract(address, CitizensABI, signer)
 
     await citizensContract.addCitizen(age, city, name, someNote)
   } catch (error) {

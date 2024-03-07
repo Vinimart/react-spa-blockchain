@@ -21,7 +21,25 @@ async function initializeProvider() {
         verifyChainId(chainId as string, provider)
       )
 
-      return provider
+      const [network, signer] = await Promise.all([
+        provider.getNetwork(),
+        provider.getSigner()
+      ])
+
+      const wallet = await signer.getAddress()
+
+      console.log(
+        '%cEthereum Provider',
+        'background-color: #2d3748; color: #f9fafb; padding: 0.25rem 0.5rem; border-radius: 0.25rem;'
+      )
+
+      console.table({
+        chainId: network.chainId,
+        wallet,
+        network: network.name
+      })
+
+      return { provider, signer, wallet }
     }
 
     throw new Error('No ethereum provider found')
@@ -36,7 +54,18 @@ function initializeContract(
   signer?: ethers.Signer
 ) {
   try {
-    return new ethers.Contract(address, abi, signer)
+    const contract = new ethers.Contract(address, abi, signer)
+
+    console.log(
+      '%cContract Initialized',
+      'background-color: #2d3748; color: #f9fafb; padding: 0.25rem 0.5rem; border-radius: 0.25rem;'
+    )
+
+    console.table({
+      address
+    })
+
+    return contract
   } catch (error) {
     throw new Error('Error initializing contract:', error as Error)
   }

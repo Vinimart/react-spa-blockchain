@@ -7,9 +7,7 @@ export default function useConnectWallet(requestAcc = false) {
 
   const connectToChain = useCallback(async () => {
     try {
-      const provider = await initializeProvider()
-      const signer = await provider.getSigner()
-      const wallet = await signer.getAddress()
+      const { provider, signer, wallet } = await initializeProvider()
 
       if (requestAcc) await provider.send('eth_requestAccounts', [])
 
