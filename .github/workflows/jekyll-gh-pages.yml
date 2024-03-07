@@ -21,6 +21,10 @@ concurrency:
   group: 'pages'
   cancel-in-progress: false
 
+env:
+  VITE_CHAIN_ID: ${{ vars.VITE_CHAIN_ID }}
+  VITE_CITIZENS_CONTRACT_ADDRESS: ${{ vars.VITE_CITIZENS_CONTRACT_ADDRESS }}
+
 jobs:
   # Build job
   build:
@@ -51,9 +55,6 @@ jobs:
           echo "VITE_CHAIN_ID=$VITE_CHAIN_ID"
           echo "VITE_CITIZENS_CONTRACT_ADDRESS=$VITE_CITIZENS_CONTRACT_ADDRESS"
           npm run build
-        env:
-          VITE_CHAIN_ID: ${{ vars.VITE_CHAIN_ID }}
-          VITE_CITIZENS_CONTRACT_ADDRESS: ${{ vars.VITE_CITIZENS_CONTRACT_ADDRESS }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

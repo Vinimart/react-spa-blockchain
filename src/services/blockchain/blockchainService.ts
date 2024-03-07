@@ -15,6 +15,10 @@ function verifyChainId(
 async function initializeProvider() {
   try {
     if (typeof window.ethereum !== 'undefined') {
+      if (VITE_CHAIN_ID) {
+        throw new Error('Chain ID not found')
+      }
+
       const provider = new ethers.BrowserProvider(window.ethereum, 'any')
 
       window.ethereum.on('chainChanged', (chainId) =>
@@ -39,6 +43,10 @@ function initializeContract(
   signer?: ethers.Signer
 ) {
   try {
+    if (!address || !abi || !signer) {
+      throw new Error('Invalid contract parameters')
+    }
+
     return new ethers.Contract(address, abi, signer)
   } catch (error) {
     throw new Error('Error initializing contract:', error as Error)
