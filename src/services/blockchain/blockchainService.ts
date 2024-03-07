@@ -21,23 +21,8 @@ async function initializeProvider() {
         verifyChainId(chainId as string, provider)
       )
 
-      const [network, signer] = await Promise.all([
-        provider.getNetwork(),
-        provider.getSigner()
-      ])
-
+      const signer = await provider.getSigner()
       const wallet = await signer.getAddress()
-
-      console.log(
-        '%cEthereum Provider',
-        'background-color: #2d3748; color: #f9fafb; padding: 0.25rem 0.5rem; border-radius: 0.25rem;'
-      )
-
-      console.table({
-        chainId: network.chainId,
-        wallet,
-        network: network.name
-      })
 
       return { provider, signer, wallet }
     }
@@ -54,21 +39,10 @@ function initializeContract(
   signer?: ethers.Signer
 ) {
   try {
-    const contract = new ethers.Contract(address, abi, signer)
-
-    console.log(
-      '%cContract Initialized',
-      'background-color: #2d3748; color: #f9fafb; padding: 0.25rem 0.5rem; border-radius: 0.25rem;'
-    )
-
-    console.table({
-      address
-    })
-
-    return contract
+    return new ethers.Contract(address, abi, signer)
   } catch (error) {
     throw new Error('Error initializing contract:', error as Error)
   }
 }
 
-export { initializeProvider, initializeContract }
+export { initializeProvider, initializeContract, verifyChainId }

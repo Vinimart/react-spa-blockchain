@@ -107,49 +107,65 @@ export default function Home() {
     [fetchCitizenNotes, mutate]
   )
 
-  const onPageMountConnectWallet = useCallback(async () => {
-    await connectWallet()
-    await fetchCitizens(page, sortBy)
-  }, [connectWallet, fetchCitizens, page, sortBy])
+  const renderContent = useCallback(() => {
+    if (isLoading) return <Loading />
+
+    if (!citizensData?.length) {
+      return (
+        <div className="text-center">
+          {signer ? 'No citizens found' : 'Connect your wallet'}
+        </div>
+      )
+    }
+
+    return (
+      <Table
+        columns={COLUMNS}
+        data={citizensData}
+        currentPage={page}
+        totalPages={totalPages}
+        onPageChange={setPage}
+        onSortChange={(key) => {
+          if (sortBy === key) setSortDir(!sortDir)
+          else setSortDir(true)
+          setSortBy(key)
+        }}
+        onClick={showDialog}
+      />
+    )
+  }, [
+    isLoading,
+    citizensData,
+    signer,
+    showDialog,
+    page,
+    totalPages,
+    setPage,
+    sortBy,
+    sortDir,
+    setSortBy,
+    setSortDir
+  ])
 
   useEffect(() => {
-    onPageMountConnectWallet()
+    connectWallet()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
-    fetchCitizens(page, sortBy)
-  }, [page, sortBy, fetchCitizens])
-
-  if (!citizensData?.length && !isLoading) {
-    return <div>No citizens found</div>
-  }
+    if (signer) fetchCitizens(page, sortBy)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page, sortBy, signer])
 
   return (
     <section>
       <Hero>Citizens List</Hero>
 
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <div className="container-sm">
-          <div className="card mx-auto flex w-full flex-col gap-4 bg-transparent px-4 py-8 shadow-xl">
-            <Table
-              columns={COLUMNS}
-              data={citizensData}
-              currentPage={page}
-              totalPages={totalPages}
-              onPageChange={setPage}
-              onSortChange={(key) => {
-                if (sortBy === key) setSortDir(!sortDir)
-                else setSortDir(true)
-                setSortBy(key)
-              }}
-              onClick={showDialog}
-            />
-          </div>
+      <div className="container-sm">
+        <div className="card mx-auto flex w-full flex-col gap-4 bg-transparent px-4 py-8 shadow-xl">
+          {renderContent()}
         </div>
-      )}
+      </div>
     </section>
   )
 }
