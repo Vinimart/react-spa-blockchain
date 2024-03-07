@@ -107,8 +107,13 @@ export default function Home() {
     [fetchCitizenNotes, mutate]
   )
 
+  const onPageMountConnectWallet = useCallback(async () => {
+    await connectWallet()
+    await fetchCitizens(page, sortBy)
+  }, [connectWallet, fetchCitizens, page, sortBy])
+
   useEffect(() => {
-    connectWallet()
+    onPageMountConnectWallet()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
