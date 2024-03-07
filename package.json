@@ -1,6 +1,7 @@
 {
   "name": "frontend-assessment",
   "description": "React front-end SPA application with blockchain integration",
+  "homepage": "https://vinimart.github.io/react-spa-blockchain/",
   "version": "1.0.0",
   "private": true,
   "author": "Vinicius Martins <viniciusmartinssilva@live.com> (https://github.com/Vinimart/frontend-assessment)",
@@ -9,7 +10,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview --port 8080",
-    "test": "vitest",
+    "test": "vitest --passWithNoTests",
     "test:ui": "vitest --ui",
     "lint": "eslint src --max-warnings=0",
     "typecheck": "tsc --project tsconfig.json --noEmit"

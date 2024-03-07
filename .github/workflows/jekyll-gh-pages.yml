@@ -42,6 +42,10 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm install
+      - name: Run linter and typechecker
+        run: npm run lint && npm run typecheck
+      - name: Run tests
+        run: npm run test
       - name: Build
         run: npm run build
       - name: Upload artifact

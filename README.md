@@ -24,6 +24,8 @@ The project follows a well-organized structure, with each directory serving dist
 
 - **store**: Contain state management logic with Zustand.
 
+- **config**: Stores configuration files, such as environment variables or constants.
+
 - **assets/ABI**: Stores Application Binary Interfaces (ABIs) for smart contracts, enabling seamless interaction with the blockchain.
 
 ## What is inside?
